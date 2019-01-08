@@ -11,7 +11,9 @@ const listingGenerator = function() {
     var arr = photoArr.map(el => el);
   }
   var listing = new db.Listing ({_id: count, photo: arr});
-  listing.save();
+  listing.save(response => {
+    db.connect.close();
+  });
   count++;
   //artisan
   photoArr = [];
@@ -20,7 +22,9 @@ const listingGenerator = function() {
     var arr = photoArr.map(el => el);
   }
   var listing = new db.Listing ({_id: count, photo: arr});
-  listing.save();
+  listing.save(response => {
+    db.connect.close();
+  });
   count++;
   //cabana
   photoArr = [];
@@ -29,7 +33,9 @@ const listingGenerator = function() {
     var arr = photoArr.map(el => el);
   }
   var listing = new db.Listing ({_id: count, photo: arr});
-  listing.save();
+  listing.save(response => {
+    db.connect.close();
+  });
   count++;
   //corner
   photoArr = [];
@@ -38,7 +44,9 @@ const listingGenerator = function() {
     var arr = photoArr.map(el => el);
   }
   var listing = new db.Listing ({_id: count, photo: arr});
-  listing.save();
+  listing.save(response => {
+    db.connect.close();
+  });
   count++;
   //grey
   photoArr = [];
@@ -47,7 +55,9 @@ const listingGenerator = function() {
     var arr = photoArr.map(el => el);
   }
   var listing = new db.Listing ({_id: count, photo: arr});
-  listing.save();
+  listing.save(response => {
+    db.connect.close();
+  });
   count++;
   //iceland
   photoArr = [];
@@ -56,7 +66,9 @@ const listingGenerator = function() {
     var arr = photoArr.map(el => el);
   }
   var listing = new db.Listing ({_id: count, photo: arr});
-  listing.save();
+  listing.save(response => {
+    db.connect.close();
+  });
   count++;
   //luxury
   photoArr = [];
@@ -65,7 +77,9 @@ const listingGenerator = function() {
     var arr = photoArr.map(el => el);
   }
   var listing = new db.Listing ({_id: count, photo: arr});
-  listing.save();
+  listing.save(response => {
+    db.connect.close();
+  });
   count++;
   //nautica
   photoArr = [];
@@ -74,7 +88,9 @@ const listingGenerator = function() {
     var arr = photoArr.map(el => el);
   }
   var listing = new db.Listing ({_id: count, photo: arr});
-  listing.save();
+  listing.save(response => {
+    db.connect.close();
+  });
   count++;
   //outdoor
   photoArr = [];
@@ -83,7 +99,9 @@ const listingGenerator = function() {
     var arr = photoArr.map(el => el);
   }
   var listing = new db.Listing ({_id: count, photo: arr});
-  listing.save();
+  listing.save(response => {
+    db.connect.close();
+  });
   count++;
   //relax
   photoArr = [];
@@ -92,7 +110,9 @@ const listingGenerator = function() {
     var arr = photoArr.map(el => el);
   }
   var listing = new db.Listing ({_id: count, photo: arr});
-  listing.save();
+  listing.save(response => {
+    db.connect.close();
+  });
   count++;
   //sunny
   photoArr = [];
@@ -101,7 +121,9 @@ const listingGenerator = function() {
     var arr = photoArr.map(el => el);
   }
   var listing = new db.Listing ({_id: count, photo: arr});
-  listing.save();
+  listing.save(response => {
+    db.connect.close();
+  });
   count++;
   //terrace
   photoArr = [];
@@ -110,7 +132,9 @@ const listingGenerator = function() {
     var arr = photoArr.map(el => el);
   }
   var listing = new db.Listing ({_id: count, photo: arr});
-  listing.save();
+  listing.save(response => {
+    db.connect.close();
+  });
   count++;
   //theatre
   photoArr = [];
@@ -119,7 +143,9 @@ const listingGenerator = function() {
     var arr = photoArr.map(el => el);
   }
   var listing = new db.Listing ({_id: count, photo: arr});
-  listing.save();
+  listing.save(response => {
+    db.connect.close();
+  });
   count++;
   //treehouse
   photoArr = [];
@@ -128,7 +154,9 @@ const listingGenerator = function() {
     var arr = photoArr.map(el => el);
   }
   var listing = new db.Listing ({_id: count, photo: arr});
-  listing.save();
+  listing.save(response => {
+    db.connect.close();
+  });
   count++;
   //villa
   photoArr = [];
@@ -137,7 +165,9 @@ const listingGenerator = function() {
     var arr = photoArr.map(el => el);
   }
   var listing = new db.Listing ({_id: count, photo: arr});
-  listing.save();
+  listing.save(response => {
+    db.connect.close();
+  });
   count++;
   //winter
   photoArr = [];
@@ -146,14 +176,18 @@ const listingGenerator = function() {
     var arr = photoArr.map(el => el);
   }
   var listing = new db.Listing ({_id: count, photo: arr});
-  listing.save();
+  listing.save(response => {
+    db.connect.close();
+  });
   count++;
 };
 
-const seedDB = function() {
+const seedDB = () => {
+  console.log('seeding started');
   for (let i = 0; i < 8; i++) {
     listingGenerator();
   }
+  console.log('seeding finished');
 };
 
 seedDB();

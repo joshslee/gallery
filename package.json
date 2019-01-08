@@ -8,10 +8,11 @@
     "node": ">=6.13.0"
   },
   "scripts": {
-    "start": "nodemon server/index.js",
+    "start": "node server/index.js",
     "build": "webpack --watch",
     "seed": "node ./db/scripts/seedDB.js",
-    "test": "jest --watch"
+    "test": "jest --watch",
+    "dev": "npm run seed && npm run start"
   },
   "dependencies": {
     "body-parser": "^1.18.3",
@@ -46,7 +47,6 @@
     "enzyme-to-json": "^3.3.5",
     "eslint": "^5.11.1",
     "eslint-config-airbnb": "^17.1.0",
-    "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^6.1.2",
     "eslint-plugin-react": "^7.12.1",

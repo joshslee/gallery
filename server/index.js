@@ -14,6 +14,7 @@ app.get('/rooms/:id/photos', (req, res) => {
   model.getPhotosById(id, (err, response) => {
     if (err) {
       res.status(501).send();
+      res.end();
     } else {
       res.end(JSON.stringify(response));
     }

@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import PhotoDisplay from './PhotoDisplay.jsx';
 import PhotoGallery from './PhotoGallery.jsx';
 
-
 class Gallery extends React.Component {
   constructor(props) {
     super(props);
