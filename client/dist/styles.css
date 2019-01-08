@@ -1,5 +1,6 @@
 .body {
   display: absolute;
+  overflow-x: hidden;
 }
 
 .body::-webkit-scrollbar {

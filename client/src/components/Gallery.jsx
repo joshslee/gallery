@@ -7,12 +7,12 @@ class Gallery extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      photos: [ // blurred out photo placeholders till fetch completes
-        {url:'https://i1.wp.com/angularscript.com/wp-content/uploads/2018/06/Progressively-Loading-Images-With-Blur-Effect-min.png?w=800&ssl=1.jpg'},
-        {url:'https://i1.wp.com/angularscript.com/wp-content/uploads/2018/06/Progressively-Loading-Images-With-Blur-Effect-min.png?w=800&ssl=1.jpg'},
-        {url:'https://i1.wp.com/angularscript.com/wp-content/uploads/2018/06/Progressively-Loading-Images-With-Blur-Effect-min.png?w=800&ssl=1.jpg'},
-        {url:'https://i1.wp.com/angularscript.com/wp-content/uploads/2018/06/Progressively-Loading-Images-With-Blur-Effect-min.png?w=800&ssl=1.jpg'},
-        {url:'https://i1.wp.com/angularscript.com/wp-content/uploads/2018/06/Progressively-Loading-Images-With-Blur-Effect-min.png?w=800&ssl=1.jpg'}
+      photos: [
+        {url:'http://d13grdp3a2v9nw.cloudfront.net/loading.png'},
+        {url:'http://d13grdp3a2v9nw.cloudfront.net/loading.png'},
+        {url:'http://d13grdp3a2v9nw.cloudfront.net/loading.png'},
+        {url:'http://d13grdp3a2v9nw.cloudfront.net/loading.png'},
+        {url:'http://d13grdp3a2v9nw.cloudfront.net/loading.png'}
       ], 
       id: null,
       showGallery: false,
@@ -23,7 +23,6 @@ class Gallery extends React.Component {
   componentDidMount() {
     let url = window.location.href.split('/');
     this.state.id = url[url.indexOf('rooms')] === undefined ? 0 : url[url.indexOf('rooms') + 1];
-    console.log(this.state.id);
     this.fetchPhotos();
   }
 
