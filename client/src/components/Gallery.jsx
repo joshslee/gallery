@@ -1,33 +1,32 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import PhotoDisplay from './PhotoDisplay.jsx';
-import PhotoGallery from './PhotoGallery.jsx';
+import LoadingPhotos from './LoadingPhotos.jsx';
+import PhotoFrame from './PhotoFrame.jsx';
+import ViewMore from './ViewMore.jsx';
+import Modal from './Modal.jsx';
 
 class Gallery extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      photos: [
-        {url:'http://d13grdp3a2v9nw.cloudfront.net/loading.png'},
-        {url:'http://d13grdp3a2v9nw.cloudfront.net/loading.png'},
-        {url:'http://d13grdp3a2v9nw.cloudfront.net/loading.png'},
-        {url:'http://d13grdp3a2v9nw.cloudfront.net/loading.png'},
-        {url:'http://d13grdp3a2v9nw.cloudfront.net/loading.png'}
-      ], 
-      id: null,
-      showGallery: false,
-      clickIndex: null
+      photos: LoadingPhotos, 
+      roomID: null,
+      clickIndex: null,
+      showGallery: false
     };
   }
 
   componentDidMount() {
-    let url = window.location.href.split('/');
-    this.state.id = url[url.indexOf('rooms')] === undefined ? 0 : url[url.indexOf('rooms') + 1];
+    this.getRoomID();
     this.fetchPhotos();
   }
 
+  getRoomID() {
+    const url = window.location.href.split('/');
+    this.state.roomID = url[url.indexOf('rooms')] === undefined ? 0 : url[url.indexOf('rooms') + 1];
+  }
+
   fetchPhotos() {
-    fetch(`/rooms/${this.state.id}/photos`)
+    fetch(`/rooms/${this.state.roomID}/photos`)
       .then((response) => {
         return response.json();
       })
@@ -38,39 +37,34 @@ class Gallery extends React.Component {
 
   toggleGallery(e) {
     e.preventDefault();
-    let id = e.target.id;
-    if (id !== null) {
-      let index = Number(id.substring(id.length - 1));
+    let photoID = e.target.id;
+    if (photoID !== null) {
+      let index = Number(photoID.substring(photoID.length - 1));
       this.setState({clickIndex: index});
     }
     this.setState({showGallery: !this.state.showGallery});
   }
 
-
   render() {
-    let {photos, showGallery} = this.state;
+    const {photos, showGallery} = this.state;
 
     return (
       <div className="body" >
         <div className="photoDisplay">
           <div id="col-1">
-            <PhotoDisplay photo={photos[0].url} index={0} showGallery={showGallery} toggleGallery={this.toggleGallery.bind(this)}/>
-            <div className="center" id="viewPhotosBtn" onClick={this.toggleGallery.bind(this)}>
-              <a>View More</a>
-            </div>
+            <PhotoFrame photo={photos[0].url} index={0} toggleGallery={this.toggleGallery.bind(this)}/>
+            <ViewMore toggleGallery={this.toggleGallery.bind(this)} />
           </div>
           <div id="col-2">
-            <PhotoDisplay photo={photos[1].url} index={1} showGallery={showGallery} toggleGallery={this.toggleGallery.bind(this)}/>
-            <PhotoDisplay photo={photos[2].url} index={2} showGallery={showGallery} toggleGallery={this.toggleGallery.bind(this)}/>
+            <PhotoFrame photo={photos[1].url} index={1} toggleGallery={this.toggleGallery.bind(this)}/>
+            <PhotoFrame photo={photos[2].url} index={2} toggleGallery={this.toggleGallery.bind(this)}/>
           </div>
           <div id="col-3">
-            <PhotoDisplay photo={photos[3].url} index={3} showGallery={showGallery} toggleGallery={this.toggleGallery.bind(this)}/>
-            <PhotoDisplay photo={photos[4].url} index={4} showGallery={showGallery} toggleGallery={this.toggleGallery.bind(this)}/>
+            <PhotoFrame photo={photos[3].url} index={3} toggleGallery={this.toggleGallery.bind(this)}/>
+            <PhotoFrame photo={photos[4].url} index={4} toggleGallery={this.toggleGallery.bind(this)}/>
           </div>
         </div>
-        <div className="photoGallery">
-          {showGallery && (<PhotoGallery photos={photos} toggleGallery={this.toggleGallery.bind(this)} clickIndex={this.state.clickIndex} showGallery={this.state.showGallery}/>)}
-        </div>
+        {showGallery && (<Modal photos={photos} toggleGallery={this.toggleGallery.bind(this)} clickIndex={this.state.clickIndex} showGallery={this.state.showGallery}/>)}
       </div>
     );
   }
