@@ -7,14 +7,25 @@ import ModalLighting from './ModalLighting.jsx';
 class Modal extends React.Component {
   constructor(props) {
     super(props);
-    let { clickIndex, photos } = this.props;
     this.state = {
-      displayIndex: clickIndex,
-      photos: photos,
-      photosLength: photos.length - 1,
+      displayIndex: 0,
+      photosLength: 0,
       showCarousel: true,
       lightMode: false,
     };
+    this.projectAsDisplay = this.projectAsDisplay.bind(this);
+    this.showOrHideList = this.showOrHideList.bind(this);
+    this.changeLighting = this.changeLighting.bind(this);
+    this.previous = this.previous.bind(this);
+    this.next = this.next.bind(this);
+  }
+
+  componentDidMount() {
+    let {clickIndex, photos} = this.props;
+    this.setState({
+      displayIndex: clickIndex,
+      photosLength: photos.length - 1
+    });
   }
 
   projectAsDisplay(e) {
@@ -55,16 +66,16 @@ class Modal extends React.Component {
   }
 
   render() {
-    const { displayIndex, photos, photosLength, showCarousel, lightMode } = this.state;
+    const { displayIndex, photosLength, showCarousel, lightMode } = this.state;
 
     return (
       <div className="modal" id={lightMode ? 'lightMode' : 'modal'}>
         <div className="modal-content" id={lightMode ? 'lightModeX' : 'modal-content'}>
           <span className="closeBtn" onClick={this.props.toggleGallery}>&times;</span>
-          <ModalDisplay previous={this.previous.bind(this)} next={this.next.bind(this)} photos={photos} displayIndex={displayIndex} />
-          <ModalDescription displayIndex={displayIndex} photos={photos} photosLength={photosLength} showOrHideList={this.showOrHideList.bind(this)} />
-          <ModalCarousel photos={photos} displayIndex={displayIndex} showCarousel={showCarousel} projectAsDisplay={this.projectAsDisplay.bind(this)}  />
-          <ModalLighting lightMode={lightMode} changeLighting={this.changeLighting.bind(this)} />
+          <ModalDisplay previous={this.previous} next={this.next} photos={this.props.photos} displayIndex={displayIndex} />
+          <ModalDescription displayIndex={displayIndex} photos={this.props.photos} photosLength={photosLength} showOrHideList={this.showOrHideList} />
+          <ModalCarousel photos={this.props.photos} displayIndex={displayIndex} showCarousel={showCarousel} projectAsDisplay={this.projectAsDisplay}  />
+          <ModalLighting lightMode={lightMode} changeLighting={this.changeLighting} />
         </div>
       </div>
     );
