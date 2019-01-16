@@ -13,7 +13,7 @@ class Modal extends React.Component {
       showCarousel: true,
       lightMode: false,
     };
-    this.projectAsDisplay = this.projectAsDisplay.bind(this);
+    this.renderAsMainImage = this.renderAsMainImage.bind(this);
     this.showOrHideList = this.showOrHideList.bind(this);
     this.changeLighting = this.changeLighting.bind(this);
     this.previous = this.previous.bind(this);
@@ -28,19 +28,16 @@ class Modal extends React.Component {
     });
   }
 
-  projectAsDisplay(e) {
-    e.preventDefault();
+  renderAsMainImage(e) {
     this.setState({ displayIndex: Number(e.target.id) });
   }
 
-  showOrHideList(e) {
-    e.preventDefault();
+  showOrHideList() {
     const { showCarousel } = this.state;
     this.setState({ showCarousel: !showCarousel });
   }
 
-  changeLighting(e) {
-    e.preventDefault();
+  changeLighting() {
     const { lightMode } = this.state;
     this.setState({ lightMode: !lightMode });
   }
@@ -74,7 +71,7 @@ class Modal extends React.Component {
           <span className="closeBtn" onClick={this.props.toggleGallery}>&times;</span>
           <ModalDisplay previous={this.previous} next={this.next} photos={this.props.photos} displayIndex={displayIndex} />
           <ModalDescription displayIndex={displayIndex} photos={this.props.photos} photosLength={photosLength} showOrHideList={this.showOrHideList} />
-          <ModalCarousel photos={this.props.photos} displayIndex={displayIndex} showCarousel={showCarousel} projectAsDisplay={this.projectAsDisplay}  />
+          <ModalCarousel photos={this.props.photos} displayIndex={displayIndex} showCarousel={showCarousel} renderAsMainImage={this.renderAsMainImage} />
           <ModalLighting lightMode={lightMode} changeLighting={this.changeLighting} />
         </div>
       </div>

@@ -39,13 +39,16 @@ class Gallery extends React.Component {
   }
 
   toggleGallery(e) {
-    e.preventDefault();
     let photoID = e.target.id;
     if (photoID !== null) {
       let index = Number(photoID.substring(photoID.length - 1));
-      this.setState({clickIndex: index}); //starts the Modal with the clicked photo as the main display
+      this.setState({
+        clickIndex: index,
+        showGallery: !this.state.showGallery
+      });
+    } else {
+      this.setState({showGallery: !this.state.showGallery});
     }
-    this.setState({showGallery: !this.state.showGallery}); // turns on and off the display 
   }
 
   render() {

@@ -1,10 +1,10 @@
 import React from 'react';
 import ModalCarouselEntry from './ModalCarouselEntry.jsx';
 
-const ModalCarousel = ({ photos, showCarousel, projectAsDisplay, displayIndex }) => {
+const ModalCarousel = ({ photos, showCarousel, renderAsMainImage, displayIndex }) => {
   return (
     <div className="photo-carousel" id={showCarousel ? 'showCarousel' : null}>
-      {photos.map((photo, index) => <ModalCarouselEntry photo={photo} key={index} index={index} projectAsDisplay={projectAsDisplay} displayIndex={displayIndex} />)}
+      {photos.map((photo, index) => <ModalCarouselEntry photo={photo} key={index} index={index} renderAsMainImage={renderAsMainImage} displayIndex={displayIndex} />)}
     </div>
   )
 }
