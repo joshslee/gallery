@@ -8,27 +8,20 @@
 1. [Requirements](#requirements)
 1. [Development](#development)
 
-## Usage
-
-> npm run dev
-> npm run build
-> npm start
-
 ## Requirements
 
-An `nvmrc` file is included if using [nvm](https://github.com/creationix/nvm).
-
-- Node 6.13.0
-- etc
-
-## Development
+MongoDB
 
 ### Installing Dependencies
 
 From within the root directory:
 
 ```sh
-npm install -g webpack
 npm install
 ```
 
+## Usage
+
+1. npm run dev
+1. npm run build
+1. npm start
