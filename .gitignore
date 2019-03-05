@@ -1,7 +1,7 @@
 /node_modules
-/jest.init.js
-/jest.config.js
-/enzyme.config.js
-/spec
-/coverage
-/.eslintrc.json
+./jest.init.js
+./jest.config.js
+./enzyme.config.js
+./spec
+./coverage
+./.eslintrc.json
