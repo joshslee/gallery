@@ -1,24 +1,19 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
-const PORT = 1337;
+const port = 8080;
 const model = require('../db/index');
 
 app.use('/rooms/:id', express.static('./client/dist'));
-app.use(bodyParser.urlencoded());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.get('/rooms/:id/photos', (req, res) => {
-  var id = req.params.id;
-  model.getPhotosById(id, (err, response) => {
-    if (err) {
-      res.status(500).send();
-    } else {
-      res.send(response);
-    }
+app.get('/api/rooms/:id/photos', (req, res) => {
+  model.getPhotosById(req.params.id, (err, { photo }) => {
+    err ? res.status(500).send() : res.status(200).send(photo)
   });
 });
 
-app.listen(PORT, () => {
-  console.log(`server listening on port, ${PORT}`);
+app.listen(port, () => {
+  console.log(`Server listening on port, ${port}`);
 });

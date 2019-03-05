@@ -4,12 +4,11 @@ import PhotoFrame from './PhotoFrame.jsx';
 import ViewMore from './ViewMore.jsx';
 import Modal from './Modal/Index.jsx';
 
-class Gallery extends React.Component {
+export default class Gallery extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       photos: LoadingPhotos, 
-      roomID: null,
       clickIndex: null,
       showGallery: false
     };
@@ -22,28 +21,21 @@ class Gallery extends React.Component {
 
   getRoomID() {
     const url = window.location.href.split('/');
-    let roomID = url[url.indexOf('rooms')] === undefined ? 0 : url[url.indexOf('rooms') + 1];
-    this.setState({roomID}, () => {
-      this.fetchPhotos();
-    });
+    const roomID = url[url.indexOf('rooms') + 1];
+    this.fetchPhotos(roomID);
   }
 
-  fetchPhotos() {
-    fetch(`/rooms/${this.state.roomID}/photos`)
-      .then((response) => {
-        return response.json();
-      })
-      .then((body) => {
-        this.setState({photos: body.photo});
-      });
+  fetchPhotos(roomID) {
+    fetch(`/api/rooms/${roomID}/photos`)
+      .then((response) => response.json())
+      .then((photos) => this.setState({ photos }));
   }
 
-  toggleGallery(e) {
-    let photoID = e.target.id;
-    if (photoID !== null) {
-      let index = Number(photoID.substring(photoID.length - 1));
+  toggleGallery(clickIndex) {
+    console.log(clickIndex);
+    if (clickIndex !== null) {
       this.setState({
-        clickIndex: index,
+        clickIndex,
         showGallery: !this.state.showGallery
       });
     } else {
@@ -76,5 +68,3 @@ class Gallery extends React.Component {
   }
 
 }
-
-export default Gallery;

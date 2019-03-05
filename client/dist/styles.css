@@ -1,6 +1,7 @@
 .body {
   display: absolute;
   overflow-x: hidden;
+  max-height: 420px;
 }
 
 .body::-webkit-scrollbar {
@@ -52,7 +53,7 @@
   opacity: 1;
   float: left;
   clear: none;
-  transition: 1s ease;
+  transition: .2s ease;
 }
 
 .photoDisplay:hover .photos {
@@ -78,12 +79,16 @@
 #image0 {
   height: 50.2vh;
   width: 50vw;
+  min-width: 526px;
+  min-height: 312px;
 }
 
 #image1,
 #image2,
 #image3,
 #image4 {
+  min-width: 263px;
+  min-height: 155px;
   height: 25vh;
   width: 25vw;
 }
@@ -269,7 +274,7 @@
 
 .body:hover #viewPhotosBtn {
   opacity: 1;
-  transition: opacity 3s ease;
+  transition: opacity 2s ease;
   z-index: 1;
 }
 
@@ -285,6 +290,7 @@
   left: 0;
   top: 50%;
   width: 100%;
+  height: 0px;
   text-align: center;
   font-size: 18px;
   opacity: 0;

@@ -1,13 +1,6 @@
 # Project Name
 
-> Project description
-
-## Related Projects
-
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
+> Gallery
 
 ## Table of Contents
 
@@ -17,7 +10,9 @@
 
 ## Usage
 
-> Some usage instructions
+> npm run dev
+> npm run build
+> npm start
 
 ## Requirements
 
